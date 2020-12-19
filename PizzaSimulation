@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<!-- This is based on DillingerLee's great template here:
+https://github.com/Team-Code/KA_Offline -->
+<html> 
+ <head>
+    <title>Processing.JS inside Webpages: Template</title> 
+</head>
+ <body>
+    <p align="center"> 
+    <!--This draws the Canvas on the webpage -->
+      <canvas id="mycanvas"></canvas> 
+    </p>
+ </body>
+ 
+ <!-- Run all the JavaScript stuff -->
+ <!-- Include the processing.js library -->
+ <!-- See https://khanacademy.zendesk.com/hc/en-us/articles/202260404-What-parts-of-ProcessingJS-does-Khan-Academy-support- for differences -->
+ <script src="https://cdn.jsdelivr.net/processing.js/1.4.8/processing.min.js"></script> 
+ 
+ <script>
+    var sketchProc = function(processingInstance) {
+     with (processingInstance) {
+        size(400, 400); 
+        frameRate(30);
+        
+        // ProgramCodeGoesHere
+        var heat=0;
+draw = function() {
+    //draw background
+    noStroke();
+    background(245, 245, 245);
+    fill(255, 0, 0);
+    textSize(31);
+    text("Thermal Ted's Pizza",50, 31);
+    textSize(6);
+    text("Learn physical science while enjoying a delicious pizza! No, Thermal is not the owner's first name, Ted is.\nYou are awesome for reading this but I bet you don't know what I just said because the pizza was covering\nit up. To do the simulation, you can feel that the crust heats up your hand slower than our delicious cheese\nand pepperonis.. mmmm yummy.",52,50);
+    fill(0, 0, 255);
+    textSize(14);
+    text("The best pizza EVER!", 235, 86);
+    text("YES, this is a knockoff Domino's box.",0,85);
+    textSize(6);
+    text("Ya wanna know why it's the best? Because it teaches ya\nabout thermal energy. You don't actually get to taste it\nof course, because it's just a bunch of pixels. We don't\nsuggest taking a bite out of your computer screen. That\nprobably wouldn't taste so good, and then you might\nleave us a bad review on Yelp... long story short don't bite\nyour screen.", 237, 94);
+    text("Haaalllo. This is a domino's pizza box, except not! This is a box for Thermal Ted's \namazing pizza.             Making a pizza box in JavaScript is hard, even with\nProcessingJS.\nGuess\nwhat\nI\ncheated\nand didn't write the words behind the pizza :0!!!",0,95);
+    fill(255, 0, 0);
+    textSize(16);
+    text("Check out www.virtualscienceteachers.com!",20,180);
+    textSize(8);
+    text("They have more simulations like this one- sorry, I mean PIZZAS! Virtual Science Teachers \nhas more PIZZAS like this one! Actually, I bet you're seeing this on there; that's what this\n simulation- sorry, I mean pizza, is for. The simulations are by Phet, yours truly, or other peeps.\nYou should check it out. :D",20,190);
+    fill(0, 0, 255);
+    textSize(10);
+    text("To use this awesome pizza simulation,\njust move the 'hand' with your mouse\nto different parts of the pizza, and see what\npart of the pizza heats up your cold hand faster.\nWould it surprise you if I said that the whole pizza\nis the same temperature?",5,230);
+    fill(255, 0, 0);
+    textSize(15);
+text("All our pizzas are programmed with\nlove and care at\n425 degrees farenheit!",5,310);
+fill(0, 0, 255);
+textSize(20);
+text("That's about 218 \ndegrees celsius!", 250,280);
+    
+     
+    //draw pizza
+    fill(209, 174, 86);
+    triangle(350,350,10,150,150,10);
+    fill(250, 255, 110);
+    triangle(355,350,10,145,150,10);
+    strokeWeight(50);
+    stroke(209, 174, 86);
+    line(30,150,140,20);
+    noStroke();
+    fill(179, 38, 38);
+    ellipse(100,150,41,47);
+    ellipse(162,150,40,40);
+    ellipse(162,91,40,40);
+    ellipse(220,209,40,40);
+    ellipse(208,150,37,40);
+    ellipse(159,199,40,40);
+    ellipse(263,257,36,40);
+    
+    
+    //Draw hand
+    fill(heat, 0, 255-heat);
+    ellipse(mouseX-5,mouseY, 25, 25);
+    rect(mouseX-15,mouseY-25,5,25,10);
+    rect(mouseX-9,mouseY-30,5,25,10);
+    rect(mouseX-3,mouseY-25,5,25,10);
+    rect(mouseX+3,mouseY-20,5,25,10);
+    stroke(heat, 0, 255-heat);
+    strokeWeight(5);
+    line(mouseX-10,mouseY+8,mouseX-20, mouseY-8);
+    noStroke();
+    
+    //Check what part of the pizza the hand is on
+    fill(255, 140, 0);
+    if (mouseY<50){
+        if(mouseX>100 & mouseX<170){
+        if(heat<255){
+            heat++;}
+        if(mouseX>135){rect(135,mouseY-7.5,mouseX-140,5);
+                triangle(mouseX-5, mouseY-10, mouseX-5,mouseY,mouseX,mouseY-5);}
+        else{rect(135,mouseY-7.5,mouseX-130,5);
+                triangle(mouseX+5, mouseY-10, mouseX+5,mouseY,mouseX,mouseY-5);}
+        }
+        else if (heat>0){
+            heat--;
+        }
+
+    }
+    
+    else if (mouseY>50 & mouseY<100){
+        if(mouseX>75 & mouseX<150){        
+        if(heat<255){
+            heat++;}
+            
+        else if(mouseX>112){
+            rect(100,mouseY-7.5,mouseX-105,5);
+            triangle(mouseX-5, mouseY-10, mouseX-5,mouseY,mouseX,mouseY-5);}
+        else if (mouseX<112){
+            rect(mouseX+5,mouseY-7.5,20,5);
+                triangle(mouseX+5, mouseY-10, mouseX+5,mouseY,mouseX,mouseY-5);}
+        }
+        
+    else if(mouseX<220){
+        if (heat<255){heat++;}    
+            else if(heat>0){heat--;}
+            
+        if(mouseX>135){
+            rect(135,mouseY-10,mouseX-140,10);
+                triangle(mouseX-10, mouseY-15, mouseX-10,mouseY+5, mouseX,mouseY-5);}
+        else{rect(mouseX+5,mouseY-7.5,10,5);
+                triangle(mouseX+5, mouseY-10, mouseX+5,mouseY,mouseX,mouseY-5);}
+            }
+
+    }
+    
+    else if (mouseY>100 & mouseY<150){
+        if(mouseX>25 & mouseX<150 ){
+        if(heat<255){
+            heat++;}
+            
+        if(mouseX>60){
+            rect(60,mouseY-7.5,mouseX-65,5);
+                triangle(mouseX-5, mouseY-10, mouseX-5,mouseY,mouseX,mouseY-5);
+            
+        }
+        
+        else{
+            rect(60,mouseY-7.5,mouseX-55,5);
+                triangle(mouseX+5, mouseY-10, mouseX+5,mouseY,mouseX,mouseY-5);
+                
+        }
+        }
+        
+        else if(mouseX>100 & mouseX<220){
+            if(heat<255){
+            heat+=5;}
+        if(mouseX>100){
+            rect(100,mouseY-10,mouseX-110,10);
+            triangle(mouseX-10, mouseY-15, mouseX-10,mouseY+5,mouseX,mouseY-5);
+        }
+            }
+        else if(heat>0){
+            heat--;
+        }
+
+    }
+    
+    else if (mouseY>150 & mouseY<200){
+        if(mouseX<75){
+            if(mouseX>30){
+                rect(30,mouseY-7.5,mouseX-35,5);
+                triangle(mouseX-5, mouseY-10, mouseX-5,mouseY,mouseX,mouseY-5);
+            }
+        else{
+            rect(30,mouseY-7.5,mouseX-25,5);
+                triangle(mouseX+5, mouseY-10, mouseX+5,mouseY,mouseX,mouseY-5);}
+        }
+        
+        else if(mouseX>75 & mouseX<260){
+            if(heat<255){
+            heat+=5;}
+            
+        if(mouseX>135){rect(135,mouseY-10,mouseX-145,10);
+                triangle(mouseX-10, mouseY-15, mouseX-10,mouseY+5,mouseX,mouseY-5);}
+                
+        else{rect(135,mouseY-10,mouseX-125,10);
+                triangle(mouseX+10, mouseY-15, mouseX+10,mouseY+5,mouseX,mouseY-5);}}
+        else if(heat>0){
+            heat--;
+        }
+
+    }
+    
+    else if (mouseY>200 & mouseY<250){
+        if(mouseX>120 & mouseX<280){    
+            if(heat<255){
+            heat+=5;}
+        if(mouseX>250){rect(250,mouseY-10,mouseX-260,10);
+                triangle(mouseX-10, mouseY-15, mouseX-10,mouseY+5,mouseX,mouseY-5);}
+        else{rect(250,mouseY-10,mouseX-240,10);
+                triangle(mouseX+10, mouseY-15, mouseX+10,mouseY+5,mouseX,mouseY-5);}}
+        else if(heat>0){
+            heat--;
+        }
+        else if(heat>0){
+            heat--;
+        }
+
+    }
+    
+    if (mouseY>250 & mouseY<300){
+        if(mouseX>180 & mouseX<340){
+            if(heat<255){
+            heat+=5;}
+        if(mouseX>250){rect(250,mouseY-10,mouseX-260,10);
+                triangle(mouseX-10, mouseY-15, mouseX-10,mouseY+5,mouseX,mouseY-5);}
+        else{
+            rect(250,mouseY-10,mouseX-240,10);
+            triangle(mouseX+10, mouseY-15, mouseX+10,mouseY+5,mouseX,mouseY-5);}}
+        else if(heat>0){
+            heat--;
+        }
+    
+
+    }
+    
+    if (mouseY>300 & mouseY<350){
+        if(mouseX>280 & mouseX<380){
+            if(heat<300){
+            heat+=5;}
+        if(mouseX>300){
+            rect(300,mouseY-10,mouseX-310,10);
+            triangle(mouseX-10, mouseY-15, mouseX-10,mouseY+5,mouseX,mouseY-5);}
+        else{rect(300,mouseY-10,mouseX-290,10);
+                triangle(mouseX+10, mouseY-15, mouseX+10,mouseY+5,mouseX,mouseY-5);}}
+        else if(heat>0){
+            heat--;
+        }
+    
+
+    }
+    if (mouseY>350){
+        if(heat>0){
+            heat--;
+        }
+    
+
+    }
+    
+
+
+};
+    }};
+
+    // Get the canvas that Processing-js will use
+    var canvas = document.getElementById("mycanvas"); 
+    // Pass the function sketchProc (defined in myCode.js) to Processing's constructor.
+    var processingInstance = new Processing(canvas, sketchProc); 
+ </script>
+
+</html>
